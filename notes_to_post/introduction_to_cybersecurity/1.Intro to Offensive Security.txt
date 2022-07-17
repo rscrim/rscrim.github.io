@@ -1,0 +1,66 @@
+Link to room: https://tryhackme.com/room/introtooffensivesecurity
+Title: Intro to Offensive Security - Hack your first website (legally in a safe environment) and experience an ethical hacker's job.
+
+Notes:
+Task 1  Hacking your first machine
+Step 1) Open a terminal
+    You got dis!
+
+Step 2) Find hidden website pages
+    gobuster - Brute-forces hidden paths on web servers and more.
+    Project link: https://github.com/OJ/gobuster
+
+    Discover directories and files that match in the wordlist
+    $ gobuster dir --url [https://example.com/] --wordlist [path/to/file]
+
+    Discover subdomains
+    $ gobuster dns --domain [example.com] --wordlist [path/to/file]
+
+    Discover Amazon S3 buckets
+    $ gobuster s3 --wordlist [path/to/file]
+
+    Discover other virtual hosts on the server
+    $ gobuster vhost --url [https://example.com/] --wordlist [path/to/file]
+
+    Fuzz the value of a parameter
+    $ gobuster fuzz --url [https://example.com/?parameter=FUZZ] --wordlist [path/to/file]
+
+    Fuzz the name of a parameter
+    $ gobuster fuzz --url [https://example.com/?FUZZ=value] --wordlist [path/to/file]
+
+    More info - https://manpages.ubuntu.com/manpages/focal/man1/gobuster.1.html or `man gobuster`
+
+    Breaking down the tutorial command
+    `gobuster -u http://fakebank.com -w wordlist.txt dir`
+    This is running the gobuster tool against the website (http://fakebank.com) looking for possible pages with names listed in the wordlist.txt file.
+
+    As you can tell the efficacy of this is really determined by the contents of the wordlist.txt file which you can view by running `cat ~/Desktop/wordlist.txt` on your provided machine.
+    A quick Google search can help you find a pre-created wordlist for your own adventures. Eg: https://github.com/topics/gobuster-wordlist
+    However for more targeted campaigns, its probably better to modify this to include suspected pages.
+
+    The output of this command will show all pages found.
+    *insert image* https://tryhackme-images.s3.amazonaws.com/user-uploads/5bec5dfd73790a7d06282266/room-content/73103edfb588a260fb9d336094ad5253.png
+
+Step 3) Hack the bank
+    Look at the returned known pages from the gobuster command and explore adding these to the URL in your browser.
+    Its important to note that this is a testing lab and it would be highly unlikely that such a page wouldn't require authentication in the real world.
+
+    Answer the questions below
+When you've transferred money to your account, go back to your bank account page. What is the answer shown on your bank balance page?
+To discover the answer to this, head back to http://fakebank.com or click the fakebank logo.
+The flag will be listed in a banner on the main page
+Solution: BANK-HACKED
+
+Task 2  What is Offensive Security?
+Copy pasta from the site - nothing more to add.
+In short, offensive security is the process of breaking into computer systems, exploiting software bugs, and finding loopholes in applications to gain unauthorized access to them.
+
+To beat a hacker, you need to behave like a hacker, finding vulnerabilities and recommending patches before a cybercriminal does, as you did in this room!
+
+On the flip side, there is also defensive security, which is the process of protecting an organization's network and computer systems by analyzing and securing any potential digital threats; learn more in the digital forensics room.
+
+In a defensive cyber role, you could be investigating infected computers or devices to understand how it was hacked, tracking down cybercriminals, or monitoring infrastructure for malicious activity.
+
+Task 3  Careers in cyber security
+A good article on the various teams in cyber security is listed here: https://medium.com/securebit/understanding-cyber-security-teams-and-roles-cf964d7737ae
+There are also a plethora of youtube videos out there on such a topic.

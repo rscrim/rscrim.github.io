@@ -1,0 +1,76 @@
+Link to room: https://tryhackme.com/room/introwebapplicationsecurity
+Title: Web Application Security - Learn about web applications and explore some of their common security issues.
+
+Task 1  Introduction
+
+Task 2  Web Application Security Risks
+Many attacks exist today designed to exploit known vulnerabilities within web applications.
+Common ones have been collated in the OWASP Top 10 (https://owasp.org/www-project-top-ten/)
+This list is updated every year with the most common exploits identified.
+
+A few common attacks listed in the room are:
+* Brute force attack - repetitively trying many passwords against a known user's account until authenticated.
+* SQL Injection - passing code or SQL queries in a search box to try and circumnavigate certain controls.
+* Man In The Middle (MITM) attack - trying to intercept valid payment information that could then be used for other purchases.
+
+**Identification and Authentication Failure**
+Identification - who is the person that's performing the action?
+Authentication - are they allowed to perform this action?
+
+These control mechanisms are prone to exploitation by attackers.
+In the scenario where you would like to do something with a system that you currently aren't able to you could either
+* Pretend to be someone with the correct level of access - by logging in as them
+* Attempt to change what you are able to do by providing yourself more access
+
+These methods often depend on weak defensive mechanisms in place from the application side such as:
+* Not placing a cool down timer or locking accounts after multiple incorrect login attempts (prevents brute force)
+* Allowing simple passwords that are easy to guess (not the typical 8+ characters, number, special character, not a name, etc. etc.)
+* Storing user's passwords in plain text so they could be read and reused to authenticate as another user.
+
+**Broken Access Control**
+Access control ensures that each user can only access files related to their role or work.
+eg: finance team should be able to access the pay system. Other employees should not.
+
+Vulnerabilities lie within all parts of a system. Examples within Access Control include:
+* Not applying the principle of least privilege (only granting users the appropriate amount of access to perform their role. nothing surplus)
+* Being able to view someone elses account using its ID.
+* Being able to browse pages that should require authentication without logging in.
+
+**Injection**
+An injection attack refers to a vulnerability in the web application where the user can insert malicious code as part of their input.
+One cause of this vulnerability is the lack of proper validation and sanitization of the user’s input.
+Ie: validating that the input provided by the user is what it shoudl be.
+EG: An age should always be a number
+
+**Cryptographic Failures**
+Cryptography focuses on the processes of encryption and decryption of data.
+Encryption scrambles cleartext into ciphertext, which should be gibberish to anyone who does not have the secret key to decrypt it.
+Think of keys like passwords but are much longer and typically generated programmatically.
+
+Examples of cryptographic failures include:
+* Sending sensitive data in clear text which allows others to intercept it and read whatever is being sent.
+* Relying on a weak cryptographic algorithm that can easily be reversed. (eg: https://en.wikipedia.org/wiki/ROT13)
+* Using default or weak keys for cryptographic functions. It won’t be challenging to break the encryption that used 1234 as the secret key.
+
+Answer the questions below - These refer to the sections above in which the exploit was discussed
+You discovered that the login page allows an unlimited number of login attempts without trying to slow down the user or lock the account. What is the category of this security risk?
+Answer: Identification and Authentication Failure
+
+You noticed that the username and password are sent in cleartext without encryption. What is the category of this security risk?
+Answer: Cryptographic Failures
+
+Task 3  Practical Example of Web Application Security
+IDOR - Insecure Direct Object References
+Falls under Broken Access control (Broken access control means that an attacker can access information or perform actions not intended for them)
+
+The scenario is based off of being able to retrieve images that we should nto be able to see.
+Similar attacks are carried out routinely against S3 buckets (AWS Object Store - think Dropbox) using this same method.
+By guessing the URL, hackers are able to find poorly configured Buckets that should not be publicly accessible.
+For more information on how this is carried out and some big companies that have been hit see - https://atos.net/en/lp/securitydive/poorly-configured-s3-buckets-a-hackers-delight
+
+Answer the questions below
+Check the other users to discover which user account was used to make the malicious changes and revert them. After reverting the changes, what is the flag that you have received?
+To solve: cycle through different user accounts as per the room information until you find the user with the changes on their recent activity.
+
+User: https://inventory-management.thm/activity?user_id=9
+Flag: THM{IDOR_EXPLORED}

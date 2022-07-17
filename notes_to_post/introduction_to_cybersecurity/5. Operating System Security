@@ -1,0 +1,82 @@
+Link to room: https://tryhackme.com/room/operatingsystemsecurity
+Title: Operating System Security - This room introduces users to operating system security and demonstrates SSH authentication on Linux.
+
+Notes:
+Task 1  Introduction to Operating System Security
+    The operating system is a software abstraction from hardware, that translates human inputs from applications into machine actions.
+    Essentially the connector between applications (eg: Firefox or Steam) to the components within your device.
+
+    From a hardware perspective, a very extensive, fun video on all the components needed to build a PC is available here: https://www.youtube.com/watch?v=BL4DCEp7blY
+    and it goes through the need for each part and its role within the system.
+
+    It should also be clarified that the pie chart for 'Operating System Market Share' for end-user devices (ie: your phone, laptop, etc.) browsing the web.
+    This is an important distinction due to the role Linux (holistically) plays as the backbone of the internet.
+    Including this would likely have a dramatic shift in the figures.. but I digress
+
+    The CIA triad is often referred to when determining data security.
+    The acronym includes:
+    C - Confidentiality - Data is only available to those who need it.
+    I - Integrity - Data is only able to be modified by those who should.
+    A - Availability - Data is available to those who need it when they need it.
+
+Answer the question
+    Which of the following is not an operating system?
+    Thunderbird
+
+Task 2  Common Examples of OS Security
+**Authentication and Weak Passwords**
+    Authentication is the first of the 3 A's in the AAA method (Authentication, Authorization, and Accounting) - yup security loves its acronyms.
+    Authentication typically can be described as:
+    * Something you know, such as a password or a PIN code.
+    * Something you are, such as a fingerprint.
+    * Something you have, such as a phone number via which you can receive an SMS message.
+
+    Passwords are the most common form of authentication and as such as the most commonly attacked.
+    Attackers can attempt to guess these, or worse, trick you through cleverly designed Phishing to give it to them.
+
+    There are also many dumps of common passwords available online for brute force attacks to utilize, including NCSC (National Cyber Security Center)'s top 100,000 most commonly used passwords https://www.ncsc.gov.uk/blog-post/passwords-passwords-everywhere
+
+    It is important that you do try, where possible, to use strong unique passwords for each system you need to authenticate into.
+    This is particularly important as once an attacker has one of your passwords, it's likely they will attempt to recycle this to authenticate into other platforms you may use (eg: Facebook, emails, online banking, etc.)
+
+    Password managers can be a good support system if you require long complex passwords but have difficulty remembering them all.
+    However if this is protected with a weak password, you could run the risk of all passwords being compromised if an attacker can unlock your store.
+
+**Weak File Permissions**
+    File permissions dictate who (being individuals or groups) can perform what actions on a file - think basic linux permissions of Read, Write or Execute.
+
+    When incorrectly configured, inappropriate access can be abused which leads to compromised Confidentiality, Integrity, and in some cases Availability.
+
+**Access to Malicious Programs**
+    arcticwolf.com has a good article on the 8 most common types of malware attacks.
+    Malware is short for malicious software - so this includes everything from viruses, adware, and trojan horses.
+
+    https://arcticwolf.com/resources/blog/8-types-of-malware
+
+Answer the question
+    Which of the following is a strong password, in your opinion?
+    `LearnM00r`
+    Because it includes Captial Letters, lower case letters, and numbers.
+    Ideally passwords should also include symbols and debatably not be human-readable/understandable.
+
+Task 3  Practical Example of OS Security
+In one typical attack, the attacker seeks to gain access to a remote system. We can accomplish this attack by tricking the target into running a malicious file or by obtaining a username and a password.
+This lab will focus on figuring out the password for a user account and then getting administrative access to the machine from there - this is called a Privilege Escalation Attack.
+
+Answer the questions below
+    Based on the top 7 passwords, let’s try to find Johnny’s password. What is the password for the user johnny?
+    Answer: abc123
+    Look at the top 7 items from list of common passwords in the above section.
+    It is 6 characters long (based on the answer format of this question.)
+
+    Once you are logged in as Johnny, use the command history to check the commands that Johnny has typed. We expect Johnny to have mistakenly typed the root password instead of a command. What is the root password?
+    Answer: happyHack!NG
+    run `history` and you will see the password was accidentally entered as a command in the shell.
+
+    While logged in as Johnny, use the command su - root to switch to the root account. Display the contents of the file flag.txt in the root directory. What is the content of the file?
+    Answer: THM{YouGotRoot}
+    su -
+    password: happyHack!NG
+    ls
+    cat flag.txt
+
